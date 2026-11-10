@@ -1,18 +1,13 @@
 # ФИО: Волкова Ксения Руслановна
-# Дата: 2026-11-09
-# Время: 11:46
-# Описание: Здесь два теста для библиотеки Playwright:
-# 1. test_has_title (проверяет, что заголовок страницы содержит слово "Playwright")
-# 2. test_get_started_link (кликает по ссылке и проверяет отображение заголовка "Installation")
-# Я добавила сохранение ссылки
-# Добавлено свечение элемента для визуального эффекта
-# Добавлено скрытие подсветки, чтобы было понятно, когда курсор не наведен на элемент
-# Добавлен клик по ссылке
-# Зачем: подсветка добавлена для визуального контроля
-
+# Дата: 2026-11-10
+# Время: 13:23
+# Описание: Здесь два первых теста из Playwright. 
+# Первый тест (test_has_title) открывает сайт и проверяет наличие слова "Playwright".
+# Второй тест (test_get_started_link) кликает на ссылку "Get started".
 import re
 from playwright.sync_api import Page, expect
 
+# Переход на страницу
 def test_has_title(page: Page):
     page.goto("https://playwright.dev/")
 
@@ -22,16 +17,9 @@ def test_has_title(page: Page):
 def test_get_started_link(page: Page):
     page.goto("https://playwright.dev/")
 
-    # Сохранение ссылки
-    link = page.get_by_role("link", name="Get started")
-    
-    # Подсвечивание элемента
-    link.highlight()
-    
-    # Скрытие подсветки
-    link.hide_highlight()
-    
-    # Клик по ссылке
-    link.click()
-    
+    # Click the get started link.
+    # Создание локатора и клик по нему
+    page.get_by_role("link", name="Get started").click()
+
+    # Expects page to have a heading with the name of Installation.
     expect(page.get_by_role("heading", name="Installation")).to_be_visible()
