@@ -18,7 +18,7 @@ def test_get_started_link(page: Page):
     page.goto("https://playwright.dev/")
 
     # Click the get started link.
-    # Создание локатора и клик по нему
+    # Создание локатора и клик по нему.
     page.get_by_role("link", name="Get started").click()
 
     # Expects page to have a heading with the name of Installation.
